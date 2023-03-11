@@ -1,6 +1,7 @@
 package com.tarasov_denis.rick_and_morty.data
 
 // import com.tarasov_denis.rick_and_morty.data.Character
+import android.util.Log
 import com.tarasov_denis.rick_and_morty.data.remote.RetrofitNetwork
 import io.reactivex.Scheduler
 import io.reactivex.Single
@@ -26,10 +27,14 @@ class Repository {
         if (request.isSuccessful) {
             return request.body()!!
         }
-
  */
         return request
     }
 
+    fun rxGetCharactersList(): Single<ListCharacters> {
+        Log.d("Denis", "функция rxGetCharactersList() запущена")
+        val request = RetrofitNetwork.rxApiClient.rxGetCharactersList()
+        return request
+    }
 
 }

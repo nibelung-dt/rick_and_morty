@@ -40,15 +40,14 @@ class DetailCharacterFragment : Fragment() {
     ): View {
 
         val binding = FragmentDetailCharacterBinding.inflate(inflater, container, false)
-
+/*
         viewModel.rxRefreshCharacter(4)
         viewModel.characterByIdLiveData.observe(viewLifecycleOwner) { response ->
-            Log.d("Denis", "VM запущена")
+           // Log.d("Denis", "VM запущена")
             if (response == null) {
                 Log.d("Denis", "response == null")
                 return@observe
             }
-            binding.name.text = response.name
             binding.name.text = response.name
             binding.status.text = response.status
             binding.species.text = response.species
@@ -63,7 +62,21 @@ class DetailCharacterFragment : Fragment() {
                 .load(imageAddress)
                 .into(binding.imageView)
 
-            Log.d("Denis", "ответ сервера получен")
+           // Log.d("Denis", "ответ сервера получен")
+        }
+
+ */
+
+        // получаем список персонажей
+        viewModel.rxRefreshCharacterList()
+        viewModel.listCharactersLiveData.observe(viewLifecycleOwner) { response ->
+            Log.d("Denis", "VM запущена")
+            if (response == null) {
+                Log.d("Denis", "response == null")
+                return@observe
+            }
+            binding.name.text = response.results[100].name
+            Log.d("Denis", response.results[100].name)
         }
 
         // этот код работает

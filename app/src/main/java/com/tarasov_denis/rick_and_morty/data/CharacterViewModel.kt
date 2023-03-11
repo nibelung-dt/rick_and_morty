@@ -20,8 +20,11 @@ class CharacterViewModel: ViewModel() {
    // private val _characterByIdLiveData = MutableLiveData<Character?>()
    // val characterByIdLiveData: LiveData<Character?> = _characterByIdLiveData
 
-    private val _characterByIdLiveData = MutableLiveData<Character>()
-    val characterByIdLiveData: LiveData<Character> = _characterByIdLiveData
+   // private val _characterByIdLiveData = MutableLiveData<Character>()
+   // val characterByIdLiveData: LiveData<Character> = _characterByIdLiveData
+
+    private val _listCharactersLiveData = MutableLiveData<ListCharacters>()
+    val listCharactersLiveData: LiveData<ListCharacters> = _listCharactersLiveData
 
     // этот метод работает
     /*
@@ -32,7 +35,7 @@ class CharacterViewModel: ViewModel() {
         }
     }
      */
-
+/*
     fun rxRefreshCharacter(id: Int) {
             val rxResponse = repository.rxGetCharacterById(id)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -55,4 +58,35 @@ class CharacterViewModel: ViewModel() {
             }
         rxResponse.subscribe(observer)
         }
+ */
+
+    fun rxRefreshCharacterList() {
+        Log.d("Denis", "функция rxRefreshCharacterList() запущена")
+        val rxResponse = repository.rxGetCharactersList()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+
+        val observer = object : SingleObserver<ListCharacters> {
+            // Log.d("Denis", "Успех!")
+            override fun onSuccess(listCharacters: ListCharacters) {
+                Log.d("Denis", "Успех!")
+               // Log.d("Denis", "Успех!")
+               // listCharacters
+                _listCharactersLiveData.postValue(listCharacters)
+            }
+
+            override fun onSubscribe(d: Disposable) {
+                //  _characterByIdLiveData.postValue(d)
+            }
+
+            override fun onError(throwable: Throwable) {
+                // _characterByIdLiveData.value
+                //  onError?.invoke(throwable)
+            }
+        }
+        rxResponse.subscribe(observer)
+    }
+
+
+
 }

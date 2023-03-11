@@ -10,18 +10,24 @@ import com.tarasov_denis.rick_and_morty.ui.DetailCharacterFragment
 
 /*
 Character
-    DetailCharacter.
+    DetailCharacter
 Содержит список эпизодов. Можно перейти в DetailEpisode и в DetailLocation
 
+ListCharacters
 
 Location
-DetailLocation
+    DetailLocation
+ListLocations
+
 Episode
-DetailEpisode
+    DetailEpisode
+ListEpisodes
  */
 
 // data/model
 // https://medium.com/dsc-sastra-deemed-to-be-university/retrofit-with-viewmodel-in-kotlin-part-1-f9e705e77144
+
+
 
 class MainActivity : AppCompatActivity() {
 /*
