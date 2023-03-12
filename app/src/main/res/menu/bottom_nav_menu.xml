@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <item
+        android:id="@+id/characters"
+        android:title="Персонажи"
+        android:icon="@drawable/ic_launcher_background"/>
+    <item
+        android:id="@+id/locations"
+        android:title="Локации"
+        android:icon="@drawable/ic_launcher_background"/>
+    <item
+        android:id="@+id/episodes"
+        android:title="Эпизоды"
+        android:icon="@drawable/ic_launcher_background"/>
+</menu>
