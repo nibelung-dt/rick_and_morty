@@ -1,10 +1,10 @@
 package com.tarasov_denis.rick_and_morty.data.remote
 
 import retrofit2.Response
-import com.tarasov_denis.rick_and_morty.data.Character
-import com.tarasov_denis.rick_and_morty.data.ListCharacters
 import com.tarasov_denis.rick_and_morty.data.remote.RetrofitNetwork.rickAndMortyService
 import com.tarasov_denis.rick_and_morty.data.remote.RetrofitNetwork.rxRickAndMortyService
+import com.tarasov_denis.rick_and_morty.data.remote.responses.CharacterResponse
+import com.tarasov_denis.rick_and_morty.data.remote.responses.ListCharactersResponse
 import io.reactivex.Single
 
 
@@ -12,15 +12,19 @@ class ApiClient(
     private val rickAndMortyService: RickAndMortyService
 ) {
 
-    suspend fun getCharacterById(id: Int): Response<Character> {
+    suspend fun getCharacterById(id: Int): Response<CharacterResponse> {
         return rickAndMortyService.getCharacterById(id)
     }
 
-    fun rxGetCharacterById(id: Int): Single<Character> {
+   // suspend fun getCharactersList(): Response<ListCharactersResponse> {
+   //     return rickAndMortyService.getCharactersList()
+   // }
+
+    fun rxGetCharacterById(id: Int): Single<CharacterResponse> {
         return rxRickAndMortyService.rxGetCharacterById(id)
     }
 
-    fun rxGetCharactersList(): Single<ListCharacters> {
+    fun rxGetCharactersList(): Single<ListCharactersResponse> {
         return rxRickAndMortyService.rxGetCharactersList()
     }
 

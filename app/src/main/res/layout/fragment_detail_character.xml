@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.DetailCharacterFragment">
+    tools:context=".ui.Characters.DetailCharacterFragment">
 
     <ImageView
         android:id="@+id/imageView"
@@ -18,47 +18,61 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:text="Имя" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+
+
+    <TextView
+        android:id="@+id/labelStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:text="Статус" />
 
     <TextView
         android:id="@+id/status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="30sp"
-        android:text="Статус" />
+        android:textSize="25sp"
+        android:text="Статус-response" />
+
+    <TextView
+        android:id="@+id/labelSpecies"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:text="Вид" />
 
     <TextView
         android:id="@+id/species"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="30sp"
-        android:text="Вид" />
+        android:textSize="25sp"
+        android:text="Вид-response" />
 
     <TextView
         android:id="@+id/gender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:text="Гендер" />
 
-    <TextView
-        android:id="@+id/episode"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="30sp"
-        android:text="Эпизод" />
 
     <TextView
         android:id="@+id/created"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:text="Создан" />
 
     <TextView
@@ -66,7 +80,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:text="Локация" />
 
     <TextView
@@ -74,9 +88,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:text="Место происхождения" />
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp"/>
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/recycler_list_characters"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="100dp"-->
+<!--        tools:listitem="@layout/item_character_layout" />-->
 
 
 </LinearLayout>

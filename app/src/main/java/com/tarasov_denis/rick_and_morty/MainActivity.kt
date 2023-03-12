@@ -2,11 +2,12 @@ package com.tarasov_denis.rick_and_morty
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.TextView
-import androidx.lifecycle.ViewModelProvider
-import com.tarasov_denis.rick_and_morty.data.CharacterViewModel
-import com.tarasov_denis.rick_and_morty.ui.DetailCharacterFragment
+import androidx.fragment.app.Fragment
+import com.tarasov_denis.rick_and_morty.databinding.ActivityMainBinding
+import com.tarasov_denis.rick_and_morty.ui.Characters.DetailCharacterFragment
+import com.tarasov_denis.rick_and_morty.ui.Characters.ListCharactersFragment
+import com.tarasov_denis.rick_and_morty.ui.Episodes.ListEpisodesFragment
+import com.tarasov_denis.rick_and_morty.ui.Locations.ListLocationsFragment
 
 /*
 Character
@@ -27,6 +28,14 @@ ListEpisodes
 // data/model
 // https://medium.com/dsc-sastra-deemed-to-be-university/retrofit-with-viewmodel-in-kotlin-part-1-f9e705e77144
 
+/*
+1) переместить VM в пакет ui
+2) настроить получение списка персонажей
+3) переименовать в CharacterResponse
+4) создать сущность Character
+5) создать маппер для Character
+
+ */
 
 
 class MainActivity : AppCompatActivity() {
@@ -35,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         ViewModelProvider(this).get(CharacterViewModel::class.java)
     }
  */
-
+// private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
       //  setTheme(R.style.Theme_Rick_and_morty)
         /*
@@ -46,32 +55,47 @@ class MainActivity : AppCompatActivity() {
          */
 
         super.onCreate(savedInstanceState)
-
-       // val binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
-
-        setContentView(R.layout.activity_main)
+        val binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
+      //  setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
+            binding.toolbar.title = "Персонажи"
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container_view, DetailCharacterFragment())
+                .replace(R.id.fragment_container_view, ListCharactersFragment()) //DetailCharacterFragment())
                 .commit()
         }
 
-        /*
-        val textView = findViewById<TextView>(R.id.textView)
-        viewModel.refreshCharacter(3)
-        viewModel.characterByIdLiveData.observe(this) { response ->
-            if (response == null) {
-                Log.d("Denis", "response == null")
-                return@observe
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+        when(item.itemId) {
+            R.id.characters -> {
+                binding.toolbar.title = "Персонажи"
+                launchFragment(ListCharactersFragment())
+                true
             }
-            textView.text = response.name
-            Log.d("Denis", response.name)
+            R.id.locations -> {
+                binding.toolbar.title = "Локации"
+                launchFragment(ListLocationsFragment())
+                true
+            }
+            R.id.episodes -> {
+                binding.toolbar.title = "Эпизоды"
+                launchFragment(ListEpisodesFragment())
+                true
+            }
+            else -> false
+            }
         }
-         */
+    }
+
+    fun launchFragment(fragment: Fragment) {
+        supportFragmentManager
+            .beginTransaction()
+            .addToBackStack(null)
+            .replace(R.id.fragment_container_view, fragment)
+            .commit()
     }
 }
-// https://developer.alexanderklimov.ru/android/library/moshi.php
+
 
 /*
  Handler(Looper.getMainLooper()).postDelayed(Runnable { navigator().goToMainFragment() }, 3000)

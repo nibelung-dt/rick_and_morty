@@ -1,15 +1,14 @@
-package com.tarasov_denis.rick_and_morty.data
+package com.tarasov_denis.rick_and_morty.data.remote.responses
 
-data class Character(
+data class CharacterResponse(
     val id: Int,
     val name: String,
     val status: String,
     val species: String,
     val type: String,
     val gender: String,
-    val origin : Origin = Origin(),     // место происхожения
- //   val origin: Origin(),  //String, // тип object - Name and link to the character's origin location
-    val location: Location = Location(), // тип object - Name and link to the character's last known location endpoint
+    val origin : Origin = Origin(),
+    val location: Location = Location(),
     val image: String, // url
     val episode: List<String>, //urls
     // val url: String, // url
